@@ -1,0 +1,8 @@
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\obj\Debug\POE_Supplementary.csprojAssemblyReference.cache
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\obj\Debug\POE_Supplementary.Properties.Resources.resources
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\obj\Debug\POE_Supplementary.csproj.GenerateResource.cache
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\bin\Debug\POE_Supplementary.exe.config
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\bin\Debug\POE_Supplementary.exe
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\bin\Debug\POE_Supplementary.pdb
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\obj\Debug\POE_Supplementary.exe
+D:\Game Design\2020 (Year 1)\Game Dev. 1B\POE\POE-supplementary\POE_Supplementary\POE_Supplementary\obj\Debug\POE_Supplementary.pdb
