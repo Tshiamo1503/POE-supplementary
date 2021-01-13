@@ -8,33 +8,35 @@ namespace POE_Supplementary
 {
     class Map
     {
-        private Tile[,] Maptiles;
-        private Hero hero;
         private Enemy[] enemies;
-        //private Item[] Items;
-        private int width, height;
+        private Item[] Items;
         private Random randomize = new Random();
+        public Obstacle obstacle = new Obstacle(0, 0);
+        public EmptyTile emptyTile = new EmptyTile(0, 0);
+        public int count;
 
-        public Tile[,] MAPtiles { get => Maptiles; set => Maptiles = value; }
-        public Hero HeroGS { get => hero; set => hero = value; }
-        public int WIDTH { get => width; set => width = value; }
-        public int HEIGHT { get => height; set => height = value; }
-        public Random RANDOM{ get => randomize; set => randomize = value; }
+        public Tile[,] MAPtiles { get; set; }
+        public Hero HeroGS { get; set; }
+        public int WIDTH { get; set; }
+        public int HEIGHT { get; set; }
+        public Random RANDOM { get => randomize; set => randomize = value; }
 
         public Map(int minWidth, int maxWidth, int minHeight, int maxHeight, int numEnemies, int goldamount, int numWeapons)
         {
-            this.width = randomize.Next(minWidth, maxWidth + 1);
-            this.height = randomize.Next(minHeight, maxHeight + 1);
-            this.Maptiles = new Tile[width, height];
+            this.WIDTH = randomize.Next(minWidth, maxWidth + 1);
+            this.HEIGHT = randomize.Next(minHeight, maxHeight + 1);
+            this.MAPtiles = new Tile[WIDTH, HEIGHT];
             this.enemies = new Enemy[numEnemies];
-            //this.Items = new Item[goldamount + numWeapons];
+            this.Items = new Item[goldamount + numWeapons];
 
-            Create(Tile.TileType.Hero);//hero
+            Createmap();
+
+            Create(Tile.TileType.Hero);                                           //hero
 
             for (int i = 0; i < numEnemies; i++)
             {
-                Create(Tile.TileType.Enemy);//enemy
-                //enemies = new Enemy();
+                count = i;
+                Create(Tile.TileType.Enemy);                                      //enemy
             }
 
             UpdateVision();
@@ -43,21 +45,21 @@ namespace POE_Supplementary
         public void UpdateVision()
         {
 
-        }
+        }//fix this
 
-        public void createmap()
+        public void Createmap()
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < WIDTH; j++)
             {
-                for (int i = 0; i < width; i++)
+                for (int i = 0; i < HEIGHT; i++)
                 {
-                    if (j == 0 || i == 0 || j == height - 1 || i == width - 1)
+                    if (j == 0 || i == 0 || j == WIDTH - 1 || i == HEIGHT - 1)
                     {
-                        Maptiles[j, i] = new Obstacle(j,i);
+                        MAPtiles[j, i] = obstacle;
                     }
                     else
                     {
-                        Maptiles[j, i] = new EmptyTile(j,i);
+                        MAPtiles[j, i] = emptyTile;
                     }
                 }
             }
@@ -67,35 +69,45 @@ namespace POE_Supplementary
         {
             switch (type)
             {
-                case Tile.TileType.Hero:
-                    hero.X = randomize.Next(WIDTH);
-                    hero.Y = randomize.Next(HEIGHT);
-                    hero = new Hero(10, hero.X, hero.Y);
-                    MAPtiles[hero.X, hero.Y] = hero;
-                    return hero;
+                case Tile.TileType.Hero://====================================================Hero
+                    HeroGS = new Hero(10, 0, 0);
+                    while (MAPtiles[HeroGS.X, HeroGS.Y] != emptyTile)
+                    {
+                        HeroGS.X = randomize.Next(WIDTH);
+                        HeroGS.Y = randomize.Next(HEIGHT);
+                    }
+                    HeroGS = new Hero(10, HeroGS.X, HeroGS.Y);
+                    MAPtiles[HeroGS.X, HeroGS.Y] = HeroGS;
+                    return HeroGS;
 
-                case Tile.TileType.Enemy:
+                case Tile.TileType.Enemy://====================================================Enemy
                     Random enemytype = new Random();
-                    Enemy enemy = new Goblin(0, 0);
-                    Random ran = new Random();
-                    enemy.X = ran.Next(0, width);
-                    enemy.Y = ran.Next(0, height);
-                    enemy = new Goblin(enemy.X, enemy.Y);
-                    Maptiles[enemy.Y, enemy.X] = enemy;
-                    return enemy;
+                    enemies[count] = new Goblin(0, 0);
+                    while (MAPtiles[enemies[count].X, enemies[count].Y] != emptyTile)
+                    {
+                        enemies[count].X = randomize.Next(0, WIDTH);
+                        enemies[count].Y = randomize.Next(0, HEIGHT);
+                    }
+                    enemies[count] = new Goblin(enemies[count].X, enemies[count].Y);
+                    MAPtiles[enemies[count].X, enemies[count].Y] = enemies[count];
+                    return enemies[count];
 
-                case Tile.TileType.Gold:
-                    return hero;
+                case Tile.TileType.Gold://====================================================Gold
+                    return HeroGS;
 
-                case Tile.TileType.Weapon:
-                    return hero;
+                case Tile.TileType.Weapon://====================================================Weapon
+                    return HeroGS;
 
-                default:
-                    hero.X = randomize.Next(WIDTH);
-                    hero.Y = randomize.Next(HEIGHT);
-                    hero = new Hero(10, hero.X, hero.Y);
-                    MAPtiles[hero.X, hero.Y] = hero;
-                    return hero;
+                default://====================================================Hero
+                    HeroGS = new Hero(10, 0, 0);
+                    while (MAPtiles[HeroGS.X, HeroGS.Y] != emptyTile)
+                    {
+                        HeroGS.X = randomize.Next(WIDTH);
+                        HeroGS.Y = randomize.Next(HEIGHT);
+                    }
+                    HeroGS = new Hero(10, HeroGS.X, HeroGS.Y);
+                    MAPtiles[HeroGS.X, HeroGS.Y] = HeroGS;
+                    return HeroGS;
             }
         }
 

@@ -12,9 +12,20 @@ namespace POE_Supplementary
 {
     public partial class Form1 : Form
     {
+        GameEngine GameEngine = new GameEngine();
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MAPlbl.Text = GameEngine.ToString();
         }
     }
 }

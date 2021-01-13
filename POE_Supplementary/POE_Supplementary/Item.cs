@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
-    class Obstacle: Tile
+    abstract class Item: Tile
     {
-        public Obstacle(int xpos, int ypos)
-        : base(xpos, ypos)
+        public Item(int x, int y) : base(x, y)
         {
-            this.x = xpos;
-            this.y = ypos;
+
         }
+
+        public abstract override string ToString();
     }
 }

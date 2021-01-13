@@ -23,34 +23,50 @@ namespace POE_Supplementary
             switch (direction)
             {
                 case Character.Movement.Nothing:
-
+                    move = false;
                     break;
                 case Character.Movement.left:
-                    if (Map.MAPtiles[Map.HeroGS.X-1, Map.HeroGS.Y] == )
+                    if (Map.MAPtiles[Map.HeroGS.X - 1, Map.HeroGS.Y] == MAP.emptyTile)
                     {
                         move = true;
                     }
                     break;
                 case Character.Movement.right:
-                    if (Map.Maptiles[Map.hero.Y, Map.hero.X + 1] == '.')
+                    if (Map.MAPtiles[Map.HeroGS.X + 1, Map.HeroGS.Y] == MAP.emptyTile)
                     {
                         move = true;
                     }
                     break;
                 case Character.Movement.up:
-                    if (Map.Maptiles[Map.hero.Y - 1, Map.hero.X] == '.')
+                    if (Map.MAPtiles[Map.HeroGS.X, Map.HeroGS.Y - 1] == MAP.emptyTile)
                     {
                         move = true;
                     }
                     break;
                 case Character.Movement.down:
-                    if (Map.Maptiles[Map.hero.Y + 1, Map.hero.X] == '.')
+                    if (Map.MAPtiles[Map.HeroGS.X, Map.HeroGS.Y + 1] == MAP.emptyTile)
                     {
                         move = true;
                     }
                     break;
             }
             return move;
+        }
+
+        private static readonly char HeroC = 'H', GoblinC = 'G', ObsticleC = 'X', EmptyC = '.';
+
+        public override string ToString()
+        {
+            string output = "";
+            for (int j = 0; j < Map.WIDTH; j++)
+            {
+                for (int i = 0; i < Map.HEIGHT; i++)
+                {
+                    output += Map.MAPtiles[j, i];
+                }
+                output += "\n";
+            }
+            return output;
         }
     }
 }

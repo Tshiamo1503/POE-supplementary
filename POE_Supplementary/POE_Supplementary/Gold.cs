@@ -6,13 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
-    class EmptyTile: Tile
+    class Gold
     {
-        public EmptyTile(int x, int y)
-        : base(x, y)
-        {
-            this.x = x;
-            this.y = y;
-        }
     }
 }
