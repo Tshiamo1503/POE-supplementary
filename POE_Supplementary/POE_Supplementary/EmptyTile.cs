@@ -8,11 +8,10 @@ namespace POE_Supplementary
 {
     class EmptyTile: Tile
     {
-        public EmptyTile(int x, int y)
-        : base(x, y)
+        public EmptyTile(int xpos, int ypos)
+        : base(xpos, ypos)
         {
-            this.x = x;
-            this.y = y;
+
         }
     }
 }

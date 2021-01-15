@@ -11,8 +11,7 @@ namespace POE_Supplementary
         public Obstacle(int xpos, int ypos)
         : base(xpos, ypos)
         {
-            this.x = xpos;
-            this.y = ypos;
+
         }
     }
 }

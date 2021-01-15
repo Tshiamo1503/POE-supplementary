@@ -12,6 +12,7 @@ namespace POE_Supplementary
         protected int mAxHP;
         protected int damage;
         protected Tile[] vision;
+        private int Goldpurse;
 
         public enum Movement { Nothing = 0, left, right, up, down }
 
@@ -19,11 +20,13 @@ namespace POE_Supplementary
         public int MAXHP { get => mAxHP; set => mAxHP = value; }
         public int HP { get => hP; set => hP = value; }
         public int DAMAGE { get => damage; set => damage = value; }
+        public int GoldP { get => Goldpurse; set => Goldpurse = value; }
 
         public Character(int x, int y, char symbol) : base(x, y)
         {
             this.x = x;
             this.y = y;
+            VISION = new Tile[4];
         }
 
         public virtual void Attack(Character target)
@@ -48,7 +51,7 @@ namespace POE_Supplementary
             bool valid = false;
             int range = DistanceTo(Chartarget);
 
-            while (barehanded == true)
+            if (barehanded == true)
             {
                 if (range == 1)
                 {
@@ -103,5 +106,14 @@ namespace POE_Supplementary
         public abstract Movement Returnmove(Movement move = 0);
 
         public abstract override string ToString();
+
+        public void Pickup(Item i)
+        {
+            if (i.GetType() == typeof(Gold))
+            {
+                GoldP += new Gold(i.X,i.Y).AmountG;
+            }
+        }
+
     }
 }
