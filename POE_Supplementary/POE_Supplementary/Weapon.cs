@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
-    abstract class Weapon : Tile
+    abstract class Weapon : Item
     {
         protected int damage;//=============================================Damage
         public int Damage { get { return damage; } set { damage = value; } }

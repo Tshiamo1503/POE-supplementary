@@ -13,6 +13,7 @@ namespace POE_Supplementary
         protected int damage;
         protected Tile[] vision;
         private int Goldpurse;
+        protected Weapon weapon;
 
         public enum Movement { Nothing = 0, left, right, up, down }
 
@@ -21,6 +22,7 @@ namespace POE_Supplementary
         public int HP { get => hP; set => hP = value; }
         public int DAMAGE { get => damage; set => damage = value; }
         public int GoldP { get => Goldpurse; set => Goldpurse = value; }
+        public Weapon Weapon => weapon;
 
         public Character(int x, int y, char symbol) : base(x, y)
         {

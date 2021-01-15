@@ -33,7 +33,7 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.left));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
@@ -51,7 +51,7 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.right));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
@@ -69,7 +69,7 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.up));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
@@ -87,7 +87,7 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.down));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
@@ -105,7 +105,7 @@ namespace POE_Supplementary
             return move;
         }
 
-        private static readonly char HeroC = 'H', GoblinC = 'G', ObsticleC = 'X', EmptyC = '.', MageC = 'M', LeaderC = 'L', GoldC = '$';
+        private static readonly char HeroC = 'H', GoblinC = 'G', ObsticleC = 'X', EmptyC = '.', MageC = 'M', LeaderC = 'L', GoldC = '$', RangeW = 'r', meleeW = 'm';
 
         public override string ToString()
         {
@@ -141,6 +141,11 @@ namespace POE_Supplementary
                                 output += MageC;
                                 break;
                             }
+                            if (MAP.Enemies[k].GetType()== MAP.leaderOBJ.GetType())
+                            {
+                                output += LeaderC;
+                                break;
+                            }
                         }
                     }                                  //Enenmies
 
@@ -153,11 +158,16 @@ namespace POE_Supplementary
                                 output += GoldC;
                                 break;
                             }
-                            /*if (MAP.ITEMs[k] == MAP.MageOBJ)
+                            if (MAP.ITEMs[k].GetType() == typeof(MeleeWeapon))
                             {
-                                output += MageC;
+                                output += meleeW;
                                 break;
-                            }*/
+                            }
+                            if (MAP.ITEMs[k].GetType() == typeof(RangedWeapon))
+                            {
+                                output += RangeW;
+                                break;
+                            }
                         }
                     }       
 
@@ -168,14 +178,9 @@ namespace POE_Supplementary
             return output;
         }
 
-        public void EnemyAttacks()
+        public void EnemyAttacks(int F)
         {
-            for (int i = 0; i < MAP.Enemies.Length; i++)
-            {
-                MAP.Enemies[i].Attack(MAP.HeroGS);
-            }
-
-
+            MAP.Enemies[F].Attack(MAP.HeroGS);
         }
 
         public void MoveEnemies()

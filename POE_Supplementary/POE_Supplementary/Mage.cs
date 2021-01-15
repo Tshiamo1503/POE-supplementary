@@ -10,6 +10,12 @@ namespace POE_Supplementary
     {
         public Mage(int Xpos, int Ypos) : base(Xpos, Ypos, 5, 5, 'M')
         {
+            DAMAGE = 5;
+        }
+
+        public override void Attack(Character target)
+        {
+            base.Attack(target);
 
         }
 

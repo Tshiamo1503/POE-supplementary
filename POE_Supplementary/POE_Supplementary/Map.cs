@@ -19,9 +19,11 @@ namespace POE_Supplementary
         public EmptyTile emptyTile = new EmptyTile(0, 0);
         public Goblin GoblinOBJ = new Goblin(0, 0);
         public Mage MageOBJ = new Mage(0, 0);
+        public Leader leaderOBJ = new Leader(0,0);
+
         public Gold GoldOBJ = new Gold(0, 0);
         public int[] goldcost;
-        public int count;
+        public int count, iteemcount;
 
         public Tile[,] MAPtiles { get => MAPTiles; set => MAPTiles = value; }
         public Hero HeroGS { get => Hero; set => Hero = value; }
@@ -44,7 +46,6 @@ namespace POE_Supplementary
 
             Create(Tile.TileType.Hero);                            //hero
 
-
             for (int i = 0; i < numEnemies; i++)
             {
                 count = i;
@@ -57,8 +58,18 @@ namespace POE_Supplementary
                 Create(type: Tile.TileType.Gold);
             }                //gold
 
+            for (int i = 0; i < ITEMs.Length; i++)
+            {
+                count = i;
+                if (ITEMs[i] == null)
+                {
+                    Create(Tile.TileType.Weapon);
+                }
+            }
+
             for (int A = 0; A < numEnemies; A++)
             {
+                count = A;
                UpdateVision(enemies[count]);
             }
 
@@ -138,6 +149,19 @@ namespace POE_Supplementary
                     return HeroGS;
 
                 case Tile.TileType.Enemy://====================================================Enemy
+                    if (count == 0)
+                    {
+                        enemies[count] = new Leader(0, 0);
+                        while (MAPtiles[enemies[count].X, enemies[count].Y] != emptyTile)
+                        {
+                            enemies[count].X = randomize.Next(0, WIDTH);
+                            enemies[count].Y = randomize.Next(0, HEIGHT);
+                        }
+                        enemies[count] = new Leader(enemies[count].X, enemies[count].Y);
+                        MAPtiles[enemies[count].X, enemies[count].Y] = enemies[count];
+                        return enemies[count];
+                    }
+                    else
                     switch (RANDOM.Next(0,2))
                     {
                         case 0:
@@ -186,7 +210,63 @@ namespace POE_Supplementary
                     return ITEMs[count];
 
                 case Tile.TileType.Weapon://====================================================Weapon
-                    return HeroGS;
+                    switch (RANDOM.Next(0,4))
+                    {
+                        case 0:
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger, 0, 0);
+                            while (MAPtiles[ITEMs[count].X, ITEMs[count].Y] != emptyTile)
+                            {
+                                ITEMs[count].X = randomize.Next(0, WIDTH);
+                                ITEMs[count].Y = randomize.Next(0, HEIGHT);
+                            }
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger,ITEMs[count].X, ITEMs[count].Y);
+                            MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
+                            return ITEMs[count];
+
+                        case 1:
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.longsword, 0, 0);
+                            while (MAPtiles[ITEMs[count].X, ITEMs[count].Y] != emptyTile)
+                            {
+                                ITEMs[count].X = randomize.Next(0, WIDTH);
+                                ITEMs[count].Y = randomize.Next(0, HEIGHT);
+                            }
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.longsword, ITEMs[count].X, ITEMs[count].Y);
+                            MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
+                            return ITEMs[count];
+
+                        case 2:
+                            ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Longbow, 0, 0);
+                            while (MAPtiles[ITEMs[count].X, ITEMs[count].Y] != emptyTile)
+                            {
+                                ITEMs[count].X = randomize.Next(0, WIDTH);
+                                ITEMs[count].Y = randomize.Next(0, HEIGHT);
+                            }
+                            ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Longbow, ITEMs[count].X, ITEMs[count].Y);
+                            MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
+                            return ITEMs[count];
+
+                        case 3:
+                            ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Rifle, 0, 0);
+                            while (MAPtiles[ITEMs[count].X, ITEMs[count].Y] != emptyTile)
+                            {
+                                ITEMs[count].X = randomize.Next(0, WIDTH);
+                                ITEMs[count].Y = randomize.Next(0, HEIGHT);
+                            }
+                            ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Rifle, ITEMs[count].X, ITEMs[count].Y);
+                            MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
+                            return ITEMs[count];
+
+                        default:
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger, 0, 0);
+                            while (MAPtiles[ITEMs[count].X, ITEMs[count].Y] != emptyTile)
+                            {
+                                ITEMs[count].X = randomize.Next(0, WIDTH);
+                                ITEMs[count].Y = randomize.Next(0, HEIGHT);
+                            }
+                            ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger, ITEMs[count].X, ITEMs[count].Y);
+                            MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
+                            return ITEMs[count];
+                    }
 
                 default://====================================================Hero
                     HeroGS = new Hero(10, 0, 0);

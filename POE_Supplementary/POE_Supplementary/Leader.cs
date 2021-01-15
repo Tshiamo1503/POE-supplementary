@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
-    class Goblin: Enemy
+    class Leader: Enemy
     {
-        public Goblin(int x, int y): base(x, y, 1, 10, 'G')
+        public Tile TARGET { get; set; }
+
+        public Leader(int x, int y) : base(x, y, 2, 20, 'L')
         {
-            this.y = y;
-            this.x = x;
-            DAMAGE =1;
-            HP = 10;
-            MAXHP = 10;
-            weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger, x, y);
+            DAMAGE = 2;
+            weapon = new MeleeWeapon(MeleeWeapon.Types.longsword, x, y);
         }
 
         public override Movement Returnmove(Movement move = Movement.Nothing)
@@ -72,5 +70,6 @@ namespace POE_Supplementary
             return move;
             throw new NotImplementedException();
         }
+
     }
 }

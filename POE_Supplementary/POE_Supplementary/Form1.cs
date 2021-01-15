@@ -43,6 +43,11 @@ namespace POE_Supplementary
                 gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
             }
             gameEngine.MoveEnemies();
+
+            for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+            {
+                gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
+            }
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
@@ -55,7 +60,7 @@ namespace POE_Supplementary
                 enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
                 if (enemyatk == true)
                 {
-                    gameEngine.EnemyAttacks();
+                    gameEngine.EnemyAttacks(l);
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
                     bool Hdead = gameEngine.MAP.HeroGS.IsDead();
                     if (Hdead == true)
@@ -67,6 +72,7 @@ namespace POE_Supplementary
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
         }
 
         private void Upbtn_Click(object sender, EventArgs e)//Up
@@ -82,19 +88,25 @@ namespace POE_Supplementary
                 gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
             }
             gameEngine.MoveEnemies();
+
+            for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+            {
+                gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
+            }
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
                 enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
             }
             enemylist.SelectedIndex = 0;
+
             bool enemyatk;
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
                 enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
                 if (enemyatk == true)
                 {
-                    gameEngine.EnemyAttacks();
+                    gameEngine.EnemyAttacks(l);
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
                     bool Hdead = gameEngine.MAP.HeroGS.IsDead();
                     if (Hdead == true)
@@ -106,6 +118,7 @@ namespace POE_Supplementary
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
         }
 
         private void Rightbtn_Click(object sender, EventArgs e)//Right
@@ -121,6 +134,11 @@ namespace POE_Supplementary
                 gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
             }
             gameEngine.MoveEnemies();
+
+            for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+            {
+                gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
+            }
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
@@ -133,7 +151,7 @@ namespace POE_Supplementary
                 enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
                 if (enemyatk == true)
                 {
-                    gameEngine.EnemyAttacks();
+                    gameEngine.EnemyAttacks(l);
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
                     bool Hdead = gameEngine.MAP.HeroGS.IsDead();
                     if (Hdead == true)
@@ -145,6 +163,7 @@ namespace POE_Supplementary
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
         }
 
         private void Downbtn_Click(object sender, EventArgs e)//Down
@@ -160,6 +179,11 @@ namespace POE_Supplementary
                 gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
             }
             gameEngine.MoveEnemies();
+
+            for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+            {
+                gameEngine.MAP.UpdateVision(gameEngine.MAP.Enemies[i]);
+            }
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
@@ -172,7 +196,7 @@ namespace POE_Supplementary
                 enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
                 if (enemyatk == true)
                 {
-                    gameEngine.EnemyAttacks();
+                    gameEngine.EnemyAttacks(l);
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
                     bool Hdead = gameEngine.MAP.HeroGS.IsDead();
                     if (Hdead == true)
@@ -184,6 +208,7 @@ namespace POE_Supplementary
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
         }
 
         private void ATKbtn_Click(object sender, EventArgs e)
@@ -210,7 +235,7 @@ namespace POE_Supplementary
 
                 if (dead == true)
                 {
-                    AtkLogBox.AppendText("Enemy Killed!" + "\n");
+                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[selctind].GetType().Name+" Killed!" + "\n");
                     gameEngine.MAP.MAPtiles[gameEngine.MAP.Enemies[selctind].X, gameEngine.MAP.Enemies[selctind].Y] = gameEngine.MAP.emptyTile;
                     //gameEngine.MAP.Enemies[enemylist.SelectedIndex] = null;
                     MAPlb.Text = gameEngine.ToString();
@@ -237,7 +262,7 @@ namespace POE_Supplementary
                 enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
                 if (enemyatk == true)
                 {
-                    gameEngine.EnemyAttacks();
+                    gameEngine.EnemyAttacks(l);
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name +" Hit you from ["+ gameEngine.MAP.Enemies[l].X+","+ gameEngine.MAP.Enemies[l].Y+ "]"+ "\n");
                     bool Hdead = gameEngine.MAP.HeroGS.IsDead();
                     if (Hdead == true)
@@ -245,6 +270,7 @@ namespace POE_Supplementary
                         MessageBox.Show("GAME OVER");
                         this.Close();
                     }
+                    break;
                 }
             }
 

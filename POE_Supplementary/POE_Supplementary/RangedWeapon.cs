@@ -61,5 +61,10 @@ namespace POE_Supplementary
             }
 
         }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

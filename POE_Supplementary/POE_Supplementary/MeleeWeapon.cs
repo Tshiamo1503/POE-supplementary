@@ -35,5 +35,10 @@ namespace POE_Supplementary
                     break;
             }
         }
+
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
