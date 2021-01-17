@@ -40,14 +40,17 @@
             this.Statbx = new System.Windows.Forms.RichTextBox();
             this.Savebtn = new System.Windows.Forms.Button();
             this.Loadbtn = new System.Windows.Forms.Button();
+            this.Shopbtn = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ATKgrpBox.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Leftbt
             // 
-            this.Leftbt.Location = new System.Drawing.Point(12, 443);
+            this.Leftbt.Location = new System.Drawing.Point(3, 45);
             this.Leftbt.Name = "Leftbt";
-            this.Leftbt.Size = new System.Drawing.Size(75, 23);
+            this.Leftbt.Size = new System.Drawing.Size(72, 31);
             this.Leftbt.TabIndex = 0;
             this.Leftbt.Text = "LEFT";
             this.Leftbt.UseVisualStyleBackColor = true;
@@ -55,9 +58,9 @@
             // 
             // Upbtn
             // 
-            this.Upbtn.Location = new System.Drawing.Point(87, 414);
+            this.Upbtn.Location = new System.Drawing.Point(116, 3);
             this.Upbtn.Name = "Upbtn";
-            this.Upbtn.Size = new System.Drawing.Size(75, 23);
+            this.Upbtn.Size = new System.Drawing.Size(72, 31);
             this.Upbtn.TabIndex = 1;
             this.Upbtn.Text = "UP";
             this.Upbtn.UseVisualStyleBackColor = true;
@@ -65,9 +68,9 @@
             // 
             // Downbtn
             // 
-            this.Downbtn.Location = new System.Drawing.Point(87, 472);
+            this.Downbtn.Location = new System.Drawing.Point(116, 87);
             this.Downbtn.Name = "Downbtn";
-            this.Downbtn.Size = new System.Drawing.Size(75, 23);
+            this.Downbtn.Size = new System.Drawing.Size(72, 31);
             this.Downbtn.TabIndex = 2;
             this.Downbtn.Text = "DOWN";
             this.Downbtn.UseVisualStyleBackColor = true;
@@ -75,9 +78,9 @@
             // 
             // Rightbtn
             // 
-            this.Rightbtn.Location = new System.Drawing.Point(162, 443);
+            this.Rightbtn.Location = new System.Drawing.Point(229, 45);
             this.Rightbtn.Name = "Rightbtn";
-            this.Rightbtn.Size = new System.Drawing.Size(75, 23);
+            this.Rightbtn.Size = new System.Drawing.Size(72, 31);
             this.Rightbtn.TabIndex = 3;
             this.Rightbtn.Text = "RIGHT";
             this.Rightbtn.UseVisualStyleBackColor = true;
@@ -85,37 +88,44 @@
             // 
             // ATKgrpBox
             // 
+            this.ATKgrpBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ATKgrpBox.Controls.Add(this.AtkLogBox);
             this.ATKgrpBox.Controls.Add(this.enemylist);
             this.ATKgrpBox.Controls.Add(this.ATKbtn);
             this.ATKgrpBox.Location = new System.Drawing.Point(12, 12);
             this.ATKgrpBox.Name = "ATKgrpBox";
-            this.ATKgrpBox.Size = new System.Drawing.Size(252, 396);
+            this.ATKgrpBox.Size = new System.Drawing.Size(407, 373);
             this.ATKgrpBox.TabIndex = 4;
             this.ATKgrpBox.TabStop = false;
             this.ATKgrpBox.Text = "Attack log";
             // 
             // AtkLogBox
             // 
+            this.AtkLogBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.AtkLogBox.Location = new System.Drawing.Point(7, 21);
             this.AtkLogBox.Name = "AtkLogBox";
-            this.AtkLogBox.Size = new System.Drawing.Size(239, 308);
+            this.AtkLogBox.Size = new System.Drawing.Size(394, 282);
             this.AtkLogBox.TabIndex = 3;
             this.AtkLogBox.Text = "";
             // 
             // enemylist
             // 
+            this.enemylist.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.enemylist.FormattingEnabled = true;
-            this.enemylist.Location = new System.Drawing.Point(6, 335);
+            this.enemylist.Location = new System.Drawing.Point(7, 309);
             this.enemylist.Name = "enemylist";
-            this.enemylist.Size = new System.Drawing.Size(239, 24);
+            this.enemylist.Size = new System.Drawing.Size(394, 24);
             this.enemylist.TabIndex = 2;
             // 
             // ATKbtn
             // 
-            this.ATKbtn.Location = new System.Drawing.Point(7, 365);
+            this.ATKbtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ATKbtn.Location = new System.Drawing.Point(7, 339);
             this.ATKbtn.Name = "ATKbtn";
-            this.ATKbtn.Size = new System.Drawing.Size(239, 23);
+            this.ATKbtn.Size = new System.Drawing.Size(394, 23);
             this.ATKbtn.TabIndex = 1;
             this.ATKbtn.Text = "Attack";
             this.ATKbtn.UseVisualStyleBackColor = true;
@@ -123,9 +133,10 @@
             // 
             // MAPlb
             // 
+            this.MAPlb.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.MAPlb.AutoSize = true;
             this.MAPlb.Font = new System.Drawing.Font("SimSun", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MAPlb.Location = new System.Drawing.Point(266, 9);
+            this.MAPlb.Location = new System.Drawing.Point(425, 12);
             this.MAPlb.Name = "MAPlb";
             this.MAPlb.Size = new System.Drawing.Size(49, 24);
             this.MAPlb.TabIndex = 5;
@@ -133,15 +144,18 @@
             // 
             // Statbx
             // 
-            this.Statbx.Location = new System.Drawing.Point(270, 377);
+            this.Statbx.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Statbx.AutoWordSelection = true;
+            this.Statbx.Location = new System.Drawing.Point(362, 395);
             this.Statbx.Name = "Statbx";
-            this.Statbx.Size = new System.Drawing.Size(250, 118);
+            this.Statbx.Size = new System.Drawing.Size(246, 127);
             this.Statbx.TabIndex = 6;
             this.Statbx.Text = "";
             // 
             // Savebtn
             // 
-            this.Savebtn.Location = new System.Drawing.Point(526, 443);
+            this.Savebtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Savebtn.Location = new System.Drawing.Point(615, 470);
             this.Savebtn.Name = "Savebtn";
             this.Savebtn.Size = new System.Drawing.Size(75, 23);
             this.Savebtn.TabIndex = 7;
@@ -151,7 +165,8 @@
             // 
             // Loadbtn
             // 
-            this.Loadbtn.Location = new System.Drawing.Point(526, 472);
+            this.Loadbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Loadbtn.Location = new System.Drawing.Point(615, 499);
             this.Loadbtn.Name = "Loadbtn";
             this.Loadbtn.Size = new System.Drawing.Size(75, 23);
             this.Loadbtn.TabIndex = 8;
@@ -159,24 +174,55 @@
             this.Loadbtn.UseVisualStyleBackColor = true;
             this.Loadbtn.Click += new System.EventHandler(this.Loadbtn_Click);
             // 
+            // Shopbtn
+            // 
+            this.Shopbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Shopbtn.Location = new System.Drawing.Point(425, 351);
+            this.Shopbtn.Name = "Shopbtn";
+            this.Shopbtn.Size = new System.Drawing.Size(183, 34);
+            this.Shopbtn.TabIndex = 9;
+            this.Shopbtn.Text = "Shop";
+            this.Shopbtn.UseVisualStyleBackColor = true;
+            this.Shopbtn.Click += new System.EventHandler(this.Shopbtn_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Controls.Add(this.Rightbtn, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Upbtn, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.Leftbt, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Downbtn, 1, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 395);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(341, 127);
+            this.tableLayoutPanel1.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(613, 507);
+            this.ClientSize = new System.Drawing.Size(702, 534);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.Shopbtn);
             this.Controls.Add(this.Loadbtn);
             this.Controls.Add(this.Savebtn);
             this.Controls.Add(this.Statbx);
             this.Controls.Add(this.MAPlb);
             this.Controls.Add(this.ATKgrpBox);
-            this.Controls.Add(this.Rightbtn);
-            this.Controls.Add(this.Downbtn);
-            this.Controls.Add(this.Upbtn);
-            this.Controls.Add(this.Leftbt);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ATKgrpBox.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,6 +242,8 @@
         private System.Windows.Forms.RichTextBox AtkLogBox;
         private System.Windows.Forms.Button Savebtn;
         private System.Windows.Forms.Button Loadbtn;
+        private System.Windows.Forms.Button Shopbtn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 

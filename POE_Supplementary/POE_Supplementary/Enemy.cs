@@ -23,7 +23,7 @@ namespace POE_Supplementary
         public override string ToString()
         {
             //EnemyClassName at[X, Y] (Amount DMG)-------------- message that must be displayed 
-            string output = typeof(Enemy).Name +" at [" + this.X + "," + this.Y + "] ( Dmg: " + this.DAMAGE + " HP: "+this.HP+" )";
+            string output = weapon.Weapontype + ": " + GetType().Name + " at [" + X + "," + Y + "] ( HP: " + HP + "/"+MAXHP+" Dmg: " + DAMAGE+ " Durability: "+ Weapon.Durability+")";
             return output;
         }
     }

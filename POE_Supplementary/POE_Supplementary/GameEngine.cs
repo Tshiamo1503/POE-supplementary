@@ -17,7 +17,7 @@ namespace POE_Supplementary
 
         public GameEngine()
         {
-            Map = new Map(10, 15, 10, 15, 10, 10, 5);
+            Map = new Map(12, 14, 12, 14, 10, 15, 5);
         }
 
         public bool MovePlayer(Character.Movement direction)
@@ -33,14 +33,13 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.left));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
                             if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] == MAP.ITEMs[l])
                             {
                                 MAP.HeroGS.Pickup(MAP.ITEMs[l]);
-                                break;
                             }
                         }
                     }
@@ -51,14 +50,13 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.right));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
                             if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] == MAP.ITEMs[l])
                             {
                                 MAP.HeroGS.Pickup(MAP.ITEMs[l]);
-                                break;
                             }
                         }
                     }
@@ -69,14 +67,13 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.up));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
                             if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] == MAP.ITEMs[l])
                             {
                                 MAP.HeroGS.Pickup(MAP.ITEMs[l]);
-                                break;
                             }
                         }
                     }
@@ -87,14 +84,13 @@ namespace POE_Supplementary
                     move = true;
                     MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] = MAP.emptyTile;
                     MAP.HeroGS.Move(MAP.HeroGS.Returnmove(Character.Movement.down));
-                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon))
+                    if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(Gold) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(MeleeWeapon) || MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y].GetType() == typeof(RangedWeapon))
                     {
                         for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
                             if (MAP.MAPtiles[MAP.HeroGS.X, MAP.HeroGS.Y] == MAP.ITEMs[l])
                             {
                                 MAP.HeroGS.Pickup(MAP.ITEMs[l]);
-                                break;
                             }
                         }
                     }
@@ -114,15 +110,15 @@ namespace POE_Supplementary
             {
                 for (int i = 0; i < Map.WIDTH; i++)
                 {
-                    if (MAP.MAPtiles[i,j].GetType() == Map.emptyTile.GetType())                       //empty
+                    if (MAP.MAPtiles[i,j].GetType() == typeof(EmptyTile))                       //empty
                     {
                         output += EmptyC;
                     }
-                    if (MAP.MAPtiles[i, j].GetType() == MAP.obstacle.GetType())                      //obstacle
+                    if (MAP.MAPtiles[i, j].GetType() == typeof(Obstacle))                      //obstacle
                     {
                         output += ObsticleC;
                     }
-                    if (MAP.MAPtiles[i, j].GetType() == MAP.HeroGS.GetType())                        //hero
+                    if (MAP.MAPtiles[i, j].GetType() == typeof(Hero))                        //hero
                     {
                         output += HeroC;
                     }
@@ -131,17 +127,17 @@ namespace POE_Supplementary
                     {
                         if (MAP.MAPtiles[i, j] == MAP.Enemies[k])
                         {
-                            if (MAP.Enemies[k].GetType() == MAP.GoblinOBJ.GetType())
+                            if (MAP.Enemies[k].GetType() == typeof(Goblin))
                             {
                                 output += GoblinC;
                                 break;
                             }
-                            if (MAP.Enemies[k].GetType() == MAP.MageOBJ.GetType())
+                            if (MAP.Enemies[k].GetType() == typeof(Mage))
                             {
                                 output += MageC;
                                 break;
                             }
-                            if (MAP.Enemies[k].GetType()== MAP.leaderOBJ.GetType())
+                            if (MAP.Enemies[k].GetType()== typeof(Leader))
                             {
                                 output += LeaderC;
                                 break;
@@ -153,20 +149,20 @@ namespace POE_Supplementary
                     {
                         if (MAP.MAPtiles[i, j] == MAP.ITEMs[k])
                         {
-                            if (MAP.ITEMs[k].GetType() == MAP.GoldOBJ.GetType())
+                            if (MAP.ITEMs[k].GetType() == typeof(Gold))
                             {
                                 output += GoldC;
-                                break;
+                                //break;
                             }
                             if (MAP.ITEMs[k].GetType() == typeof(MeleeWeapon))
                             {
                                 output += meleeW;
-                                break;
+                                //break;
                             }
                             if (MAP.ITEMs[k].GetType() == typeof(RangedWeapon))
                             {
                                 output += RangeW;
-                                break;
+                                //break;
                             }
                         }
                     }       
@@ -180,27 +176,33 @@ namespace POE_Supplementary
 
         public void EnemyAttacks(int F)
         {
-            MAP.Enemies[F].Attack(MAP.HeroGS);
+            if (MAP.Enemies[F].HP>0)
+            {
+                MAP.Enemies[F].Attack(MAP.HeroGS);
+            }
         }
 
         public void MoveEnemies()
         {
             for (int i = 0; i < MAP.Enemies.Length; i++)
             {
-                MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] = MAP.emptyTile;
-                MAP.Enemies[i].Move(MAP.Enemies[i].Returnmove(Character.Movement.Nothing));
-                if (MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y].GetType() == typeof(Gold))
+                if (MAP.Enemies[i].HP > 0)
                 {
-                    for (int l = 0; l < MAP.ITEMs.Length; l++)
+                    MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] = MAP.emptyTile;
+                    MAP.Enemies[i].Move(MAP.Enemies[i].Returnmove(Character.Movement.Nothing));
+                    if (MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y].GetType() == typeof(Gold))
                     {
-                        if (MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] == MAP.ITEMs[l])
+                        for (int l = 0; l < MAP.ITEMs.Length; l++)
                         {
-                            MAP.Enemies[i].Pickup(MAP.ITEMs[l]);
-                            break;
+                            if (MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] == MAP.ITEMs[l])
+                            {
+                                MAP.Enemies[i].Pickup(MAP.ITEMs[l]);
+                                break;
+                            }
                         }
                     }
+                    MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] = MAP.Enemies[i];
                 }
-                MAP.MAPtiles[MAP.Enemies[i].X, MAP.Enemies[i].Y] = MAP.Enemies[i];
             }
         }
 

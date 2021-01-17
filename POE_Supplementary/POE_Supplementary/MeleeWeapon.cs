@@ -10,14 +10,15 @@ namespace POE_Supplementary
     {
         public enum Types
         {
-            Dagger, longsword
+            Dagger, longsword,Barehanded
         }
 
-        public override int Range { get => base.range; set => base.range = 1; }
+        public override int Range { get => base.Range; set => base.Range = 1; }
 
         public MeleeWeapon(Types melee, int x, int y)
             : base('M', x, y)
         {
+            range = 1;
             switch (melee)
             {
                 case Types.Dagger:
@@ -32,6 +33,13 @@ namespace POE_Supplementary
                     Durability = 6;
                     Damage = 4;
                     Cost = 5;
+                    break;
+
+                case Types.Barehanded:
+                    Weapontype = "BareHanded";
+                    Durability = 0;
+                    damage = 0;
+                    cost = 0;
                     break;
             }
         }

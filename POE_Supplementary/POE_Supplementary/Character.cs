@@ -49,16 +49,12 @@ namespace POE_Supplementary
 
         public virtual bool CheckRange(Character Chartarget)
         {
-            bool barehanded = true;
             bool valid = false;
             int range = DistanceTo(Chartarget);
-
-            if (barehanded == true)
+            int wrange = weapon.Range;
+            if (range <= wrange)
             {
-                if (range == 1)
-                {
-                    valid = true;
-                }
+                valid = true;
             }
             return valid;
         }
@@ -113,9 +109,34 @@ namespace POE_Supplementary
         {
             if (i.GetType() == typeof(Gold))
             {
-                GoldP += new Gold(i.X,i.Y).AmountG;
+                GoldP += ((Gold)i).AmountG;// for some reason all gold items are the same amount for this
+                //GoldP += new Gold(0,0).Amount;
+            }
+            else 
+            {
+                Equip((Weapon)i);
             }
         }
 
+        private void Equip(Weapon w)
+        {
+            weapon = w;
+            weapon.Damage = damage = w.Damage;
+            Weapon.Weapontype = w.Weapontype;
+            weapon.Range = w.Range;
+            weapon.Durability = w.Durability;
+            weapon.Cost = w.Cost;
+        }
+
+        public void Loot(Character target)
+        {
+            this.Goldpurse += target.GoldP;
+            target.GoldP = 0;
+
+            if (weapon == null)
+            {
+                this.weapon = target.weapon;
+            }
+        }
     }
 }

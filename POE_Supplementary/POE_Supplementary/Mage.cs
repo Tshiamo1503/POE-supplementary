@@ -10,7 +10,9 @@ namespace POE_Supplementary
     {
         public Mage(int Xpos, int Ypos) : base(Xpos, Ypos, 5, 5, 'M')
         {
+            weapon = new MeleeWeapon(MeleeWeapon.Types.Barehanded, x, y);
             DAMAGE = 5;
+            GoldP = 3;
         }
 
         public override void Attack(Character target)

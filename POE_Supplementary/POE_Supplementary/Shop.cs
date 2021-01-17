@@ -73,7 +73,8 @@ namespace POE_Supplementary
             Buyer.GoldP -= weapons[num].Cost;
 
             Buyer.Pickup(weapons[num]);
-            RandomWeapon();
+
+            weapons[num] = RandomWeapon();
         }
 
         public string DisplayWeapon(int num)

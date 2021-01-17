@@ -13,6 +13,7 @@ namespace POE_Supplementary
             this.HP = hp;
             this.MAXHP = hp;
             this.DAMAGE = 2;
+            weapon = new MeleeWeapon(MeleeWeapon.Types.Barehanded, x, y);
         }
 
         public override Movement Returnmove(Movement move)//=========== need to fix!!!!
@@ -23,7 +24,7 @@ namespace POE_Supplementary
                     break;
 
                 case Movement.left:
-                    if (VISION[3].GetType() == typeof(Obstacle))
+                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Enemy))
                     {
                         move = Movement.Nothing;
                     }
@@ -69,11 +70,14 @@ namespace POE_Supplementary
 
         public override string ToString()
         {
-            string output = "Player Stats:" + "\n"
-                + "HP: " + this.HP + "/" + this.MAXHP + " HP" + "\n"
-                + "Damage: " + this.damage + "\n"
-                + "Gold: " + this.GoldP + "\n"
-                + "[" + this.x + "," + this.y + "]";
+            string output;
+            output = "Player Stats:" + "\n"
+                + "HP: " + HP + "/" + MAXHP + " HP" + "\n"
+                + "Gold: " + GoldP + "\n"
+                + "[" + x + "," + y + "]" + "\n"
+                + "Weapon type: " + weapon.Weapontype + "\n"
+                + "Weapon Range: " + weapon.Range + "\n"
+                + "Weapon Damage: " + DAMAGE;
             return output;
         }
     }

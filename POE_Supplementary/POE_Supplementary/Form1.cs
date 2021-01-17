@@ -12,8 +12,11 @@ namespace POE_Supplementary
 {
     public partial class Form1 : Form
     {
-        readonly GameEngine gameEngine = new GameEngine();
+         GameEngine gameEngine = new GameEngine();
+        Random ran = new Random();
+        Shop shop ;
         int selctind = 0;
+        int weaponbuy;
         public Form1()
         {
             InitializeComponent();
@@ -21,6 +24,7 @@ namespace POE_Supplementary
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            shop = new Shop(gameEngine.MAP.HeroGS);
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
 
@@ -29,6 +33,18 @@ namespace POE_Supplementary
                 enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
             }
             enemylist.SelectedIndex = 0;
+
+            weaponbuy = ran.Next(0, 3);
+            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
+
+            if (shop.CanBuy(weaponbuy) == false)
+            {
+                Shopbtn.Enabled = false;
+            }
+            else
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void Button1_Click(object sender, EventArgs e)//Left
@@ -51,28 +67,40 @@ namespace POE_Supplementary
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
-                enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                if (gameEngine.MAP.Enemies[i].HP > 0)
+                {
+                    enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                }
             }
             enemylist.SelectedIndex = 0;
             bool enemyatk;
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
-                enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
-                if (enemyatk == true)
+                if (gameEngine.MAP.Enemies[l].HP > 0)
                 {
-                    gameEngine.EnemyAttacks(l);
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
-                    bool Hdead = gameEngine.MAP.HeroGS.IsDead();
-                    if (Hdead == true)
+                    enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
+                    if (enemyatk == true)
                     {
-                        MessageBox.Show("GAME OVER");
-                        this.Close();
+                        gameEngine.EnemyAttacks(l);
+                        AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
+                        bool Hdead = gameEngine.MAP.HeroGS.IsDead();
+                        if (Hdead == true)
+                        {
+                            MessageBox.Show("GAME OVER");
+                            this.Close();
+                        }
+                        break;
                     }
                 }
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == true)
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void Upbtn_Click(object sender, EventArgs e)//Up
@@ -96,29 +124,41 @@ namespace POE_Supplementary
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
-                enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                if (gameEngine.MAP.Enemies[i].HP > 0)
+                {
+                    enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                }
             }
             enemylist.SelectedIndex = 0;
 
             bool enemyatk;
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
-                enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
-                if (enemyatk == true)
+                if (gameEngine.MAP.Enemies[l].HP > 0)
                 {
-                    gameEngine.EnemyAttacks(l);
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
-                    bool Hdead = gameEngine.MAP.HeroGS.IsDead();
-                    if (Hdead == true)
+                    enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
+                    if (enemyatk == true)
                     {
-                        MessageBox.Show("GAME OVER");
-                        this.Close();
+                        gameEngine.EnemyAttacks(l);
+                        AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
+                        bool Hdead = gameEngine.MAP.HeroGS.IsDead();
+                        if (Hdead == true)
+                        {
+                            MessageBox.Show("GAME OVER");
+                            this.Close();
+                        }
+                        break;
                     }
                 }
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == true)
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void Rightbtn_Click(object sender, EventArgs e)//Right
@@ -142,28 +182,40 @@ namespace POE_Supplementary
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
-                enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                if (gameEngine.MAP.Enemies[i].HP > 0)
+                {
+                    enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                }
             }
             enemylist.SelectedIndex = 0;
             bool enemyatk;
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
-                enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
-                if (enemyatk == true)
+                if (gameEngine.MAP.Enemies[l].HP > 0)
                 {
-                    gameEngine.EnemyAttacks(l);
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
-                    bool Hdead = gameEngine.MAP.HeroGS.IsDead();
-                    if (Hdead == true)
+                    enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
+                    if (enemyatk == true)
                     {
-                        MessageBox.Show("GAME OVER");
-                        this.Close();
+                        gameEngine.EnemyAttacks(l);
+                        AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
+                        bool Hdead = gameEngine.MAP.HeroGS.IsDead();
+                        if (Hdead == true)
+                        {
+                            MessageBox.Show("GAME OVER");
+                            this.Close();
+                        }
+                        break;
                     }
                 }
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == true)
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void Downbtn_Click(object sender, EventArgs e)//Down
@@ -187,28 +239,41 @@ namespace POE_Supplementary
             enemylist.Items.Clear();
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
-                enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                if (gameEngine.MAP.Enemies[i].HP > 0)
+                {
+                    enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+                }
             }
             enemylist.SelectedIndex = 0;
+
             bool enemyatk;
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
-                enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
-                if (enemyatk == true)
+                if (gameEngine.MAP.Enemies[l].HP > 0)
                 {
-                    gameEngine.EnemyAttacks(l);
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
-                    bool Hdead = gameEngine.MAP.HeroGS.IsDead();
-                    if (Hdead == true)
+                    enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
+                    if (enemyatk == true)
                     {
-                        MessageBox.Show("GAME OVER");
-                        this.Close();
+                        gameEngine.EnemyAttacks(l);
+                        AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
+                        bool Hdead = gameEngine.MAP.HeroGS.IsDead();
+                        if (Hdead == true)
+                        {
+                            MessageBox.Show("GAME OVER");
+                            this.Close();
+                        }
+                        break;
                     }
                 }
             }
 
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == true)
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void ATKbtn_Click(object sender, EventArgs e)
@@ -236,6 +301,7 @@ namespace POE_Supplementary
                 if (dead == true)
                 {
                     AtkLogBox.AppendText(gameEngine.MAP.Enemies[selctind].GetType().Name+" Killed!" + "\n");
+                    gameEngine.MAP.HeroGS.Loot(gameEngine.MAP.Enemies[enemylist.SelectedIndex]);
                     gameEngine.MAP.MAPtiles[gameEngine.MAP.Enemies[selctind].X, gameEngine.MAP.Enemies[selctind].Y] = gameEngine.MAP.emptyTile;
                     //gameEngine.MAP.Enemies[enemylist.SelectedIndex] = null;
                     MAPlb.Text = gameEngine.ToString();
@@ -249,6 +315,23 @@ namespace POE_Supplementary
                     }
                     enemylist.SelectedIndex = 0;
                 }
+
+                //checks if all enemies are dead
+                for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+                {
+                    int counter = 0;
+
+                    if (gameEngine.MAP.Enemies[i].HP <= 0)
+                    {
+                        counter++;
+                    }
+
+                    if (counter == gameEngine.MAP.Enemies.Length)
+                    {
+                        MessageBox.Show("YOU WIN !!!");
+                        this.Close();
+                    }
+                }
             }
             else
             {
@@ -256,21 +339,24 @@ namespace POE_Supplementary
                 AtkLogBox.AppendText("Hit Failed!"+"\n");
             }
 
-            bool enemyatk;
+            bool enemyatk; // enemies attacking
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
-                enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
-                if (enemyatk == true)
+                if (gameEngine.MAP.Enemies[l].HP > 0)
                 {
-                    gameEngine.EnemyAttacks(l);
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name +" Hit you from ["+ gameEngine.MAP.Enemies[l].X+","+ gameEngine.MAP.Enemies[l].Y+ "]"+ "\n");
-                    bool Hdead = gameEngine.MAP.HeroGS.IsDead();
-                    if (Hdead == true)
+                    enemyatk = gameEngine.MAP.Enemies[l].CheckRange(gameEngine.MAP.HeroGS);
+                    if (enemyatk == true)
                     {
-                        MessageBox.Show("GAME OVER");
-                        this.Close();
+                        gameEngine.EnemyAttacks(l);
+                        AtkLogBox.AppendText(gameEngine.MAP.Enemies[l].GetType().Name + " Hit you from [" + gameEngine.MAP.Enemies[l].X + "," + gameEngine.MAP.Enemies[l].Y + "]" + "\n");
+                        bool Hdead = gameEngine.MAP.HeroGS.IsDead();
+                        if (Hdead == true)
+                        {
+                            MessageBox.Show("GAME OVER");
+                            this.Close();
+                        }
+                        break;
                     }
-                    break;
                 }
             }
 
@@ -284,6 +370,24 @@ namespace POE_Supplementary
         private void Loadbtn_Click(object sender, EventArgs e)
         {
             gameEngine.Load();
+        }
+
+        private void Shopbtn_Click(object sender, EventArgs e)
+        {
+            shop.Buy(weaponbuy);
+            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
+            weaponbuy = ran.Next(0, 3);
+            MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == false)
+            {
+                Shopbtn.Enabled = false;
+            }
+            else
+            {
+                Shopbtn.Enabled = true;
+            }
         }
     }
 }

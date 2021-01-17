@@ -17,13 +17,8 @@ namespace POE_Supplementary
 
         public Obstacle obstacle = new Obstacle(0, 0);
         public EmptyTile emptyTile = new EmptyTile(0, 0);
-        public Goblin GoblinOBJ = new Goblin(0, 0);
-        public Mage MageOBJ = new Mage(0, 0);
-        public Leader leaderOBJ = new Leader(0,0);
 
-        public Gold GoldOBJ = new Gold(0, 0);
-        public int[] goldcost;
-        public int count, iteemcount;
+        public int count;
 
         public Tile[,] MAPtiles { get => MAPTiles; set => MAPTiles = value; }
         public Hero HeroGS { get => Hero; set => Hero = value; }
@@ -40,7 +35,6 @@ namespace POE_Supplementary
             this.MAPtiles = new Tile[WIDTH, HEIGHT];
             this.enemies = new Enemy[numEnemies];
             this.Items = new Item[goldamount + numWeapons];
-            goldcost = new int[goldamount];
 
             Createmap();
 
@@ -55,7 +49,10 @@ namespace POE_Supplementary
             for (int i = 0; i < goldamount; i++)                   
             {
                 count = i;
-                Create(type: Tile.TileType.Gold);
+                if (ITEMs[i] == null)
+                {
+                    Create(type: Tile.TileType.Gold);
+                }
             }                //gold
 
             for (int i = 0; i < ITEMs.Length; i++)
@@ -78,40 +75,43 @@ namespace POE_Supplementary
 
         public void UpdateVision(Character character)//fix this
         {
-            if (MAPTiles[character.X,character.Y-1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y-1].GetType() == typeof(Gold))
+            if (enemies[count].HP > 0)
             {
-                character.VISION[0] = new EmptyTile(character.X, character.Y-1);
-            }
-            else
-            {
-                character.VISION[0] = new Obstacle(character.X, character.Y-1);
-            }
+                if (MAPTiles[character.X, character.Y - 1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(Gold) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(RangedWeapon))
+                {
+                    character.VISION[0] = new EmptyTile(character.X, character.Y - 1);
+                }
+                else
+                {
+                    character.VISION[0] = new Obstacle(character.X, character.Y - 1);
+                }
 
-            if (MAPTiles[character.X+1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X+1, character.Y].GetType() == typeof(Gold))
-            {
-                character.VISION[1] = new EmptyTile(character.X+1, character.Y);
-            }
-            else
-            {
-                character.VISION[1] = new Obstacle(character.X+1, character.Y);
-            }
+                if (MAPTiles[character.X + 1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(Gold) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(RangedWeapon))
+                {
+                    character.VISION[1] = new EmptyTile(character.X + 1, character.Y);
+                }
+                else
+                {
+                    character.VISION[1] = new Obstacle(character.X + 1, character.Y);
+                }
 
-            if (MAPTiles[character.X, character.Y+1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y+1].GetType() == typeof(Gold))
-            {
-                character.VISION[2] = new EmptyTile(character.X, character.Y+1);
-            }
-            else
-            {
-                character.VISION[2] = new Obstacle(character.X, character.Y+1);
-            }
+                if (MAPTiles[character.X, character.Y + 1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(Gold) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(RangedWeapon))
+                {
+                    character.VISION[2] = new EmptyTile(character.X, character.Y + 1);
+                }
+                else
+                {
+                    character.VISION[2] = new Obstacle(character.X, character.Y + 1);
+                }
 
-            if (MAPTiles[character.X-1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X-1, character.Y].GetType() == typeof(Gold))
-            {
-                character.VISION[3] = new EmptyTile(character.X-1, character.Y);
-            }
-            else
-            {
-                character.VISION[3] = new Obstacle(character.X-1, character.Y);
+                if (MAPTiles[character.X - 1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(Gold) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(RangedWeapon))
+                {
+                    character.VISION[3] = new EmptyTile(character.X - 1, character.Y);
+                }
+                else
+                {
+                    character.VISION[3] = new Obstacle(character.X - 1, character.Y);
+                }
             }
         }
 
@@ -138,13 +138,13 @@ namespace POE_Supplementary
             switch (type)
             {
                 case Tile.TileType.Hero://====================================================Hero
-                    HeroGS = new Hero(50, 0, 0);
+                    HeroGS = new Hero(0, 0, 0);
                     while (MAPtiles[HeroGS.X, HeroGS.Y] != emptyTile)
                     {
                         HeroGS.X = randomize.Next(WIDTH);
                         HeroGS.Y = randomize.Next(HEIGHT);
                     }
-                    HeroGS = new Hero(50, HeroGS.X, HeroGS.Y);
+                    HeroGS = new Hero(100, HeroGS.X, HeroGS.Y);
                     MAPtiles[HeroGS.X, HeroGS.Y] = HeroGS;
                     return HeroGS;
 
@@ -205,7 +205,7 @@ namespace POE_Supplementary
                         ITEMs[count].X = randomize.Next(0, WIDTH);
                         ITEMs[count].Y = randomize.Next(0, HEIGHT);
                     }
-                    ITEMs[count] = new Gold(ITEMs[count].X,ITEMs[count].Y);
+                    ITEMs[count] = new Gold(ITEMs[count].X, ITEMs[count].Y);
                     MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
                     return ITEMs[count];
 
@@ -221,7 +221,8 @@ namespace POE_Supplementary
                             }
                             ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger,ITEMs[count].X, ITEMs[count].Y);
                             MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
-                            return ITEMs[count];
+                            //return ITEMs[count];
+                            break;
 
                         case 1:
                             ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.longsword, 0, 0);
@@ -232,7 +233,8 @@ namespace POE_Supplementary
                             }
                             ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.longsword, ITEMs[count].X, ITEMs[count].Y);
                             MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
-                            return ITEMs[count];
+                            //return ITEMs[count];
+                            break;
 
                         case 2:
                             ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Longbow, 0, 0);
@@ -243,7 +245,8 @@ namespace POE_Supplementary
                             }
                             ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Longbow, ITEMs[count].X, ITEMs[count].Y);
                             MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
-                            return ITEMs[count];
+                            //return ITEMs[count];
+                            break;
 
                         case 3:
                             ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Rifle, 0, 0);
@@ -254,7 +257,8 @@ namespace POE_Supplementary
                             }
                             ITEMs[count] = new RangedWeapon(RangedWeapon.Types.Rifle, ITEMs[count].X, ITEMs[count].Y);
                             MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
-                            return ITEMs[count];
+                            //return ITEMs[count];
+                            break;
 
                         default:
                             ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger, 0, 0);
@@ -265,8 +269,10 @@ namespace POE_Supplementary
                             }
                             ITEMs[count] = new MeleeWeapon(MeleeWeapon.Types.Dagger, ITEMs[count].X, ITEMs[count].Y);
                             MAPtiles[ITEMs[count].X, ITEMs[count].Y] = ITEMs[count];
-                            return ITEMs[count];
+                            //return ITEMs[count];
+                            break;
                     }
+                    return ITEMs[count];
 
                 default://====================================================Hero
                     HeroGS = new Hero(10, 0, 0);

@@ -16,6 +16,8 @@ namespace POE_Supplementary
             HP = 10;
             MAXHP = 10;
             weapon = new MeleeWeapon(MeleeWeapon.Types.Dagger, x, y);
+            damage = weapon.Damage;
+            GoldP = 1;
         }
 
         public override Movement Returnmove(Movement move = Movement.Nothing)

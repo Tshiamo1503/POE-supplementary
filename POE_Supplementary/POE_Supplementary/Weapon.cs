@@ -26,7 +26,6 @@ namespace POE_Supplementary
         public Weapon(char Symbl, int x, int y)
             : base(x, y)
         {
-
         }
     }
 }

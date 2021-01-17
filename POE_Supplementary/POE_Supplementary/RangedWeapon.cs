@@ -13,7 +13,7 @@ namespace POE_Supplementary
             Rifle, Longbow
         }
 
-        public override int Range { get => base.range; set => base.range = Range; }
+        public override int Range { get => base.range; set => base.range = value; }
 
         public RangedWeapon(Types RanGe, int x, int y)
         : base('R', x, y)
@@ -64,7 +64,7 @@ namespace POE_Supplementary
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+            throw new Exception();
         }
     }
 }

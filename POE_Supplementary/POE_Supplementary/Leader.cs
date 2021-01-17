@@ -14,6 +14,8 @@ namespace POE_Supplementary
         {
             DAMAGE = 2;
             weapon = new MeleeWeapon(MeleeWeapon.Types.longsword, x, y);
+            damage = Weapon.Damage;
+            GoldP = 2;
         }
 
         public override Movement Returnmove(Movement move = Movement.Nothing)
