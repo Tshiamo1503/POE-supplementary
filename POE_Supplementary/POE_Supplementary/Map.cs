@@ -77,41 +77,24 @@ namespace POE_Supplementary
         {
             if (enemies[count].HP > 0)
             {
-                if (MAPTiles[character.X, character.Y - 1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(Gold) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X, character.Y - 1].GetType() == typeof(RangedWeapon))
+                if (character.GetType() == typeof(Mage))
                 {
-                    character.VISION[0] = new EmptyTile(character.X, character.Y - 1);
-                }
-                else
-                {
-                    character.VISION[0] = new Obstacle(character.X, character.Y - 1);
-                }
+                    character.VISION[7] = MAPtiles[character.X - 1, character.Y - 1];
 
-                if (MAPTiles[character.X + 1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(Gold) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X + 1, character.Y].GetType() == typeof(RangedWeapon))
-                {
-                    character.VISION[1] = new EmptyTile(character.X + 1, character.Y);
-                }
-                else
-                {
-                    character.VISION[1] = new Obstacle(character.X + 1, character.Y);
-                }
+                    character.VISION[4] = MAPtiles[character.X + 1, character.Y - 1];
 
-                if (MAPTiles[character.X, character.Y + 1].GetType() == typeof(EmptyTile) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(Gold) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X, character.Y + 1].GetType() == typeof(RangedWeapon))
-                {
-                    character.VISION[2] = new EmptyTile(character.X, character.Y + 1);
-                }
-                else
-                {
-                    character.VISION[2] = new Obstacle(character.X, character.Y + 1);
-                }
+                    character.VISION[6] = MAPtiles[character.X - 1, character.Y + 1];
 
-                if (MAPTiles[character.X - 1, character.Y].GetType() == typeof(EmptyTile) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(Gold) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(MeleeWeapon) || MAPTiles[character.X - 1, character.Y].GetType() == typeof(RangedWeapon))
-                {
-                    character.VISION[3] = new EmptyTile(character.X - 1, character.Y);
+                    character.VISION[5] = MAPtiles[character.X + 1, character.Y + 1];
                 }
-                else
-                {
-                    character.VISION[3] = new Obstacle(character.X - 1, character.Y);
-                }
+                   
+                character.VISION[0] = MAPtiles[character.X, character.Y - 1];
+
+                character.VISION[1] = MAPtiles[character.X + 1, character.Y];
+
+                character.VISION[2] = MAPtiles[character.X, character.Y + 1];
+
+                character.VISION[3] = MAPtiles[character.X - 1, character.Y];
             }
         }
 

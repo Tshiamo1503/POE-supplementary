@@ -26,7 +26,7 @@ namespace POE_Supplementary
             switch (Direction)
             {
                 case 0://downn
-                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Enemy))
+                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Enemy) || VISION[2].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -35,7 +35,7 @@ namespace POE_Supplementary
                     break;
 
                 case 1://up
-                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Enemy))
+                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Enemy) || VISION[0].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -44,7 +44,7 @@ namespace POE_Supplementary
                     break;
 
                 case 2://left
-                    if (VISION[3].GetType() == typeof(Obstacle))
+                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Enemy) || VISION[3].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -53,7 +53,7 @@ namespace POE_Supplementary
                     break;
 
                 case 3://right
-                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Enemy))
+                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Enemy) || VISION[1].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
