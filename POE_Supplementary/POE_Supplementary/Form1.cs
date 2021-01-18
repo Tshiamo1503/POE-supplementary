@@ -339,6 +339,7 @@ namespace POE_Supplementary
                 AtkLogBox.AppendText("Hit Failed!"+"\n");
             }
 
+            dead = false;
             bool enemyatk; // enemies attacking
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {

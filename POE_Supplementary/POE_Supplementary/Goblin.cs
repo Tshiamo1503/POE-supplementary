@@ -28,7 +28,7 @@ namespace POE_Supplementary
             switch (Direction)
             {
                 case 0://downn
-                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Enemy) || VISION[2].GetType() == typeof(Hero))
+                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Goblin) || VISION[2].GetType() == typeof(Mage) || VISION[2].GetType() == typeof(Leader) || VISION[2].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -37,7 +37,7 @@ namespace POE_Supplementary
                     break;
 
                 case 1://up
-                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Enemy) || VISION[0].GetType() == typeof(Hero))
+                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Goblin) || VISION[0].GetType() == typeof(Mage) || VISION[0].GetType() == typeof(Leader) || VISION[0].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -46,7 +46,7 @@ namespace POE_Supplementary
                     break;
 
                 case 2://left
-                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Enemy) || VISION[3].GetType() == typeof(Hero))
+                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Goblin) || VISION[3].GetType() == typeof(Mage) || VISION[3].GetType() == typeof(Leader) || VISION[3].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }
@@ -55,7 +55,7 @@ namespace POE_Supplementary
                     break;
 
                 case 3://right
-                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Enemy) || VISION[1].GetType() == typeof(Hero))
+                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Goblin) || VISION[1].GetType() == typeof(Mage) || VISION[1].GetType() == typeof(Leader) || VISION[1].GetType() == typeof(Hero))
                     {
                         move = Movement.Nothing;
                     }

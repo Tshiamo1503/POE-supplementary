@@ -75,7 +75,7 @@ namespace POE_Supplementary
 
         public void UpdateVision(Character character)//fix this
         {
-            if (enemies[count].HP > 0)
+            if (enemies[count].HP > 0 || HeroGS.HP > 0)
             {
                 if (character.GetType() == typeof(Mage))
                 {

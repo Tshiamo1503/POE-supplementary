@@ -17,8 +17,8 @@ namespace POE_Supplementary
 
         public Tile(int xval, int yval)
         {
-            this.x = xval;
-            this.y = yval;
+            x = xval;
+            y = yval;
         }
 
         public int X { get { return x; } set { x = value; } }

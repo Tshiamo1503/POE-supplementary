@@ -12,7 +12,7 @@ namespace POE_Supplementary
         protected int mAxHP;
         protected int damage;
         protected Tile[] vision;
-        private int Goldpurse;
+        protected int Goldpurse;
         protected Weapon weapon;
 
         public enum Movement { Nothing = 0, left, right, up, down }
@@ -39,7 +39,7 @@ namespace POE_Supplementary
         public bool IsDead()
         {
             bool dead = false;
-            if (this.HP <= 0)
+            if (HP <= 0)
             {
                 dead = true;
             }

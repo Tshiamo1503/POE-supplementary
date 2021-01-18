@@ -19,14 +19,14 @@ namespace POE_Supplementary
         public override void Attack(Character target)
         {
             base.Attack(target);
-            for (int i = 0; i < VISION.Length-1; i++)
+            /*for (int i = 0; i < VISION.Length-1; i++)
             {
                 if (VISION[i].GetType() == typeof(Enemy))
                 {
                     Character enemy = (Character)VISION[i];
                     enemy.HP -= damage;
                 }
-            }
+            }*/
         }
 
         public override Movement Returnmove(Movement move = Movement.Nothing)

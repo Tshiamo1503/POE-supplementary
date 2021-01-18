@@ -24,46 +24,53 @@ namespace POE_Supplementary
                     break;
 
                 case Movement.left:
-                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Enemy))
+                    if (VISION[3].GetType() == typeof(Obstacle) || VISION[3].GetType() == typeof(Goblin) || VISION[3].GetType() == typeof(Mage) || VISION[3].GetType() == typeof(Leader))
                     {
                         move = Movement.Nothing;
                     }
                     else
-                    move = Movement.left;
+                    {
+                        move = Movement.left;
+                    }
                     break;
 
                 case Movement.right:
-                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Enemy))
+                    if (VISION[1].GetType() == typeof(Obstacle) || VISION[1].GetType() == typeof(Goblin) || VISION[1].GetType() == typeof(Mage) || VISION[1].GetType() == typeof(Leader))
                     {
                         move = Movement.Nothing;
                     }
                     else
-                    move = Movement.right;
+                    {
+                        move = Movement.right;
+                    }
                     break;
 
                 case Movement.up:
-                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Enemy))
+                    if (VISION[0].GetType() == typeof(Obstacle) || VISION[0].GetType() == typeof(Goblin) || VISION[0].GetType() == typeof(Mage) || VISION[0].GetType() == typeof(Leader))
                     {
                         move = Movement.Nothing;
                     }
                     else
-                    move = Movement.up;
+                    {
+                        move = Movement.up;
+                    }
                     break;
 
                 case Movement.down:
-                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Enemy))
+                    if (VISION[2].GetType() == typeof(Obstacle) || VISION[2].GetType() == typeof(Goblin) || VISION[2].GetType() == typeof(Mage) || VISION[2].GetType() == typeof(Leader))
                     {
                         move = Movement.Nothing;
                     }
                     else
-                    move = Movement.down;
+                    {
+                        move = Movement.down;
+                    }
                     break;
 
                 default:
                     move = Movement.Nothing;
                     break;
             }
-
             return move;
             throw new NotImplementedException();
         }
