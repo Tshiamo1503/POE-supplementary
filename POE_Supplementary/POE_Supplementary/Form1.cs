@@ -12,7 +12,7 @@ namespace POE_Supplementary
 {
     public partial class Form1 : Form
     {
-         GameEngine gameEngine = new GameEngine();
+        GameEngine gameEngine = new GameEngine();
         Random ran = new Random();
         Shop shop ;
         int selctind = 0;
@@ -45,6 +45,8 @@ namespace POE_Supplementary
             {
                 Shopbtn.Enabled = true;
             }
+
+            Loadbtn.Enabled = false;
         }
 
         private void Button1_Click(object sender, EventArgs e)//Left
@@ -366,6 +368,9 @@ namespace POE_Supplementary
         private void Savebtn_Click(object sender, EventArgs e)
         {
             gameEngine.Save();
+
+            Savebtn.Enabled = false;
+            Loadbtn.Enabled = true;
         }
 
         private void Loadbtn_Click(object sender, EventArgs e)
@@ -381,17 +386,8 @@ namespace POE_Supplementary
             }
             enemylist.SelectedIndex = 0;
 
-            weaponbuy = ran.Next(0, 3);
-            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
-
-            if (shop.CanBuy(weaponbuy) == false)
-            {
-                Shopbtn.Enabled = false;
-            }
-            else
-            {
-                Shopbtn.Enabled = true;
-            }
+            Savebtn.Enabled = true;
+            Loadbtn.Enabled = false;
         }
 
         private void Shopbtn_Click(object sender, EventArgs e)
