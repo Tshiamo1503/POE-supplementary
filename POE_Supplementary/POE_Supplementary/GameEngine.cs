@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-
 using System.IO;
 
 namespace POE_Supplementary
 {
-    class GameEngine : ISerializable
+    [Serializable()]
+    class GameEngine: ISerializable
     {
         private Map Map;
         public Map MAP { get => Map; set => Map = value; }
@@ -208,46 +209,34 @@ namespace POE_Supplementary
 
         public void Save()// =============saving in binary format
         {
+            Stream stream = File.Open("MAP-Data.bin", FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
 
+            formatter.Serialize(stream, MAP);
 
-            if (File.Exists("Map Data"))
-            {
-                Stream stream = File.Open("Map-Data.dat", FileMode.Open);
-                BinaryFormatter Bin = new BinaryFormatter();
-
-                Bin.Serialize(stream, Map);
-                stream.Close();
-            }
-            else
-            {
-                Stream stream = File.Open("Map-Data.dat", FileMode.Create);
-                BinaryFormatter Bin = new BinaryFormatter();
-
-                Bin.Serialize(stream, Map);
-                stream.Close();
-            }
-        }
-
-        public void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            info.AddValue("Map-Display", Map);
-            throw new NotImplementedException();
-        }
-
-        public GameEngine(SerializationInfo info, StreamingContext context)
-        {
-            Map = (Map)info.GetValue("Map-Display", typeof(Map));
+            stream.Close();
         }
 
         public void Load()
         {
-            Map = null;
+            MAP = null;
 
-            Stream stream = File.Open("Map-Data.dat", FileMode.Open);
-            BinaryFormatter Bin = new BinaryFormatter();
+            Stream stream = File.Open("MAP-Data.bin", FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
 
-            Map = (Map)Bin.Deserialize(stream);
+            Map = (Map)formatter.Deserialize(stream);
+
             stream.Close();
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {        
+            info.AddValue("Map-Display", MAP);
+        }
+
+        public GameEngine(SerializationInfo info, StreamingContext context)
+        {
+            MAP = (Map)info.GetValue("Map-Display", typeof(Map));
         }
     }
 }

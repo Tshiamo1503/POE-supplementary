@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class Gold: Item
     {
         private Random ran = new Random();

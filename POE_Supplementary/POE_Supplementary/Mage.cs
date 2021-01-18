@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class Mage: Enemy
     {
         public Mage(int Xpos, int Ypos) : base(Xpos, Ypos, 5, 5, 'M')

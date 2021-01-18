@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class RangedWeapon: Weapon
     {
         public enum Types

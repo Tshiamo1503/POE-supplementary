@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class Hero: Character
     {
         public Hero(int hp, int xval, int yval) : base(xval, yval, 'H')

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class Leader: Enemy
     {
         public Tile TARGET { get; set; }

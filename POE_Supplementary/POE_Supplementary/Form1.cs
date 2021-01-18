@@ -371,6 +371,27 @@ namespace POE_Supplementary
         private void Loadbtn_Click(object sender, EventArgs e)
         {
             gameEngine.Load();
+            shop = new Shop(gameEngine.MAP.HeroGS);
+            MAPlb.Text = gameEngine.ToString();//refresh map
+            Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
+            {
+                enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
+            }
+            enemylist.SelectedIndex = 0;
+
+            weaponbuy = ran.Next(0, 3);
+            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
+
+            if (shop.CanBuy(weaponbuy) == false)
+            {
+                Shopbtn.Enabled = false;
+            }
+            else
+            {
+                Shopbtn.Enabled = true;
+            }
         }
 
         private void Shopbtn_Click(object sender, EventArgs e)

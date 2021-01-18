@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     class Goblin: Enemy
     {
         public Goblin(int x, int y): base(x, y, 1, 10, 'G')

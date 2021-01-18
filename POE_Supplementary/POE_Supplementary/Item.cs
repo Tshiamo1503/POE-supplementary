@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     abstract class Item: Tile
     {
         public Item(int x, int y) : base(x, y)

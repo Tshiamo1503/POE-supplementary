@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace POE_Supplementary
 {
+    [Serializable()]
     abstract class Enemy: Character
     {
         protected Random ran = new Random();
