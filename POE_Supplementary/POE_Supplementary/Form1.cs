@@ -13,7 +13,7 @@ namespace POE_Supplementary
     public partial class Form1 : Form
     {
         GameEngine gameEngine = new GameEngine();
-        Random ran = new Random();
+        private readonly Random ran = new Random();
         Shop shop ;
         int weaponbuy;
         public Form1()
@@ -398,8 +398,8 @@ namespace POE_Supplementary
         private void Shopbtn_Click(object sender, EventArgs e)
         {
             shop.Buy(weaponbuy);
-            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
             weaponbuy = ran.Next(0, 3);
+            Shopbtn.Text = shop.DisplayWeapon(weaponbuy);
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
 
