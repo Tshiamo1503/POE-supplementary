@@ -48,9 +48,10 @@
             // 
             // Leftbt
             // 
-            this.Leftbt.Location = new System.Drawing.Point(3, 45);
+            this.Leftbt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Leftbt.Location = new System.Drawing.Point(3, 47);
             this.Leftbt.Name = "Leftbt";
-            this.Leftbt.Size = new System.Drawing.Size(72, 31);
+            this.Leftbt.Size = new System.Drawing.Size(106, 31);
             this.Leftbt.TabIndex = 0;
             this.Leftbt.Text = "LEFT";
             this.Leftbt.UseVisualStyleBackColor = true;
@@ -58,9 +59,10 @@
             // 
             // Upbtn
             // 
-            this.Upbtn.Location = new System.Drawing.Point(116, 3);
+            this.Upbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Upbtn.Location = new System.Drawing.Point(115, 5);
             this.Upbtn.Name = "Upbtn";
-            this.Upbtn.Size = new System.Drawing.Size(72, 31);
+            this.Upbtn.Size = new System.Drawing.Size(106, 31);
             this.Upbtn.TabIndex = 1;
             this.Upbtn.Text = "UP";
             this.Upbtn.UseVisualStyleBackColor = true;
@@ -68,9 +70,10 @@
             // 
             // Downbtn
             // 
-            this.Downbtn.Location = new System.Drawing.Point(116, 87);
+            this.Downbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Downbtn.Location = new System.Drawing.Point(115, 90);
             this.Downbtn.Name = "Downbtn";
-            this.Downbtn.Size = new System.Drawing.Size(72, 31);
+            this.Downbtn.Size = new System.Drawing.Size(106, 31);
             this.Downbtn.TabIndex = 2;
             this.Downbtn.Text = "DOWN";
             this.Downbtn.UseVisualStyleBackColor = true;
@@ -78,9 +81,10 @@
             // 
             // Rightbtn
             // 
-            this.Rightbtn.Location = new System.Drawing.Point(229, 45);
+            this.Rightbtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.Rightbtn.Location = new System.Drawing.Point(227, 47);
             this.Rightbtn.Name = "Rightbtn";
-            this.Rightbtn.Size = new System.Drawing.Size(72, 31);
+            this.Rightbtn.Size = new System.Drawing.Size(107, 31);
             this.Rightbtn.TabIndex = 3;
             this.Rightbtn.Text = "RIGHT";
             this.Rightbtn.UseVisualStyleBackColor = true;
@@ -195,15 +199,15 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.Controls.Add(this.Rightbtn, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.Upbtn, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Leftbt, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.Downbtn, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 395);
+            this.tableLayoutPanel1.Controls.Add(this.Leftbt, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(19, 395);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(341, 127);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(337, 127);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // Form1
@@ -238,12 +242,12 @@
         private System.Windows.Forms.Button ATKbtn;
         private System.Windows.Forms.Label MAPlb;
         private System.Windows.Forms.RichTextBox Statbx;
-        private System.Windows.Forms.ComboBox enemylist;
         private System.Windows.Forms.RichTextBox AtkLogBox;
         private System.Windows.Forms.Button Savebtn;
         private System.Windows.Forms.Button Loadbtn;
         private System.Windows.Forms.Button Shopbtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ComboBox enemylist;
     }
 }
 

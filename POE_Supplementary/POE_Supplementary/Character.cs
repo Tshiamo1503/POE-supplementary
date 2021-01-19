@@ -39,10 +39,14 @@ namespace POE_Supplementary
 
         public bool IsDead()
         {
-            bool dead = false;
+            bool dead;
             if (HP <= 0)
             {
                 dead = true;
+            }
+            else
+            {
+                dead = false;
             }
 
             return dead;

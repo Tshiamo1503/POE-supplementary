@@ -15,7 +15,6 @@ namespace POE_Supplementary
         GameEngine gameEngine = new GameEngine();
         Random ran = new Random();
         Shop shop ;
-        int selctind = 0;
         int weaponbuy;
         public Form1()
         {
@@ -280,13 +279,11 @@ namespace POE_Supplementary
 
         private void ATKbtn_Click(object sender, EventArgs e)
         {
-            bool dead;
             bool hitland = gameEngine.MAP.HeroGS.CheckRange(gameEngine.MAP.Enemies[enemylist.SelectedIndex]);
             if (hitland == true)
             {
                 gameEngine.MAP.HeroGS.Attack(gameEngine.MAP.Enemies[enemylist.SelectedIndex]);
                 enemylist.Text = gameEngine.MAP.Enemies[enemylist.SelectedIndex].ToString();
-                selctind = enemylist.SelectedIndex;
                 enemylist.Items.Clear();
                 for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
                 {
@@ -295,16 +292,16 @@ namespace POE_Supplementary
                         enemylist.Items.Add(gameEngine.MAP.Enemies[i].ToString());
                     }
                 }
-                enemylist.SelectedIndex = selctind;
-                AtkLogBox.AppendText("Hit Landed!"+"\n"); 
+                enemylist.SelectedIndex = 0;
+                AtkLogBox.AppendText("Hit Landed!"+"\n");
 
-                dead = gameEngine.MAP.Enemies[enemylist.SelectedIndex].IsDead();
+                bool dead = gameEngine.MAP.Enemies[enemylist.SelectedIndex].IsDead();
 
                 if (dead == true)
                 {
-                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[selctind].GetType().Name+" Killed!" + "\n");
+                    AtkLogBox.AppendText(gameEngine.MAP.Enemies[enemylist.SelectedIndex].GetType().Name+" Killed!" + "\n");
                     gameEngine.MAP.HeroGS.Loot(gameEngine.MAP.Enemies[enemylist.SelectedIndex]);
-                    gameEngine.MAP.MAPtiles[gameEngine.MAP.Enemies[selctind].X, gameEngine.MAP.Enemies[selctind].Y] = gameEngine.MAP.emptyTile;
+                    gameEngine.MAP.MAPtiles[gameEngine.MAP.Enemies[enemylist.SelectedIndex].X, gameEngine.MAP.Enemies[enemylist.SelectedIndex].Y] = gameEngine.MAP.emptyTile;
                     //gameEngine.MAP.Enemies[enemylist.SelectedIndex] = null;
                     MAPlb.Text = gameEngine.ToString();
                     enemylist.Items.Clear();
@@ -316,6 +313,7 @@ namespace POE_Supplementary
                         }
                     }
                     enemylist.SelectedIndex = 0;
+                    enemylist.Text = gameEngine.MAP.Enemies[enemylist.SelectedIndex].ToString();
                 }
 
                 //checks if all enemies are dead
@@ -337,11 +335,9 @@ namespace POE_Supplementary
             }
             else
             {
-                enemylist.SelectedIndex = selctind;
+                enemylist.SelectedIndex = 0;
                 AtkLogBox.AppendText("Hit Failed!"+"\n");
             }
-
-            dead = false;
             bool enemyatk; // enemies attacking
             for (int l = 0; l < gameEngine.MAP.Enemies.Length; l++)
             {
@@ -379,6 +375,15 @@ namespace POE_Supplementary
             shop = new Shop(gameEngine.MAP.HeroGS);
             MAPlb.Text = gameEngine.ToString();//refresh map
             Statbx.Text = gameEngine.MAP.HeroGS.ToString();
+
+            if (shop.CanBuy(weaponbuy) == false)
+            {
+                Shopbtn.Enabled = false;
+            }
+            else
+            {
+                Shopbtn.Enabled = true;
+            }
 
             for (int i = 0; i < gameEngine.MAP.Enemies.Length; i++)
             {
